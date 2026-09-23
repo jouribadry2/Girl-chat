@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عالم الأميرات الصغيرات - تواصل P2P مباشر</title>
+    <title>عالم الأميرات الصغيرات - اتصال فوري</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -26,26 +26,18 @@
             background: rgba(0,0,0,0.2);
             border-radius: 10px;
         }
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-8px) rotate(2deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-        .floating-anim {
-            animation: float 4s ease-in-out infinite;
-        }
     </style>
 </head>
 <body class="bg-slate-100 min-h-screen flex items-center justify-center p-2 sm:p-4 overflow-x-hidden">
 
     <div id="app" class="w-full max-w-4xl bg-white shadow-2xl rounded-3xl overflow-hidden flex flex-col min-h-[620px] sm:min-h-[700px] transition-all duration-500 relative border-4 border-pink-200">
-        
-        <!-- ================= CHAT DASHBOARD (Girls Only Theme) ================= -->
+       
+        <!-- ================= CHAT DASHBOARD ================= -->
         <div id="screen-chat" class="flex-1 flex flex-col md:flex-row h-full overflow-hidden">
-            
+           
             <!-- Sidebar -->
             <div id="sidebar" class="w-full md:w-80 flex flex-col border-b md:border-b-0 md:border-l border-slate-200 bg-slate-50 transition-colors duration-300">
-                
+               
                 <!-- Profile Header -->
                 <div id="sidebar-header" class="p-4 flex items-center justify-between text-white shadow-md bg-gradient-to-r from-pink-500 to-rose-500">
                     <div class="flex items-center space-x-3 space-x-reverse">
@@ -55,7 +47,7 @@
                         <div>
                             <h2 id="user-display-name" class="font-extrabold text-lg">الأميرة الصغيرة</h2>
                             <span class="text-xs opacity-90 flex items-center gap-1">
-                                <span class="w-2 h-2 rounded-full bg-green-400 inline-block"></span> جاهزة للاتصال المباشر
+                                <span class="w-2 h-2 rounded-full bg-green-400 inline-block"></span> جاهزة للدردشة الفورية
                             </span>
                         </div>
                     </div>
@@ -66,7 +58,7 @@
                     <div class="flex justify-between items-center mb-1">
                         <span class="text-xs font-bold text-slate-500">كود الاتصال الخاص بك:</span>
                         <button onclick="generateNewCode()" class="text-xs text-rose-600 hover:text-rose-800 font-bold flex items-center gap-1 bg-rose-50 hover:bg-rose-100 px-2 py-1 rounded-lg transition-colors">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i> توليد كود جديد
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> تغيير الكود
                         </button>
                     </div>
                     <div class="flex items-center justify-between bg-slate-100 p-2.5 rounded-xl border border-slate-200">
@@ -90,13 +82,13 @@
                 <!-- Active Connection List -->
                 <div class="px-4 py-2 flex items-center justify-between border-t border-slate-200 bg-slate-100/50">
                     <span class="text-xs font-extrabold text-slate-600">الأصدقاء المحفوظون (<span id="friends-count">0</span>)</span>
-                    <span class="text-[10px] text-slate-400">P2P حقيقي</span>
+                    <span class="text-[10px] text-slate-400">اتصال فوري</span>
                 </div>
 
                 <div id="friends-list" class="flex-1 overflow-y-auto p-2 space-y-1 max-h-[220px] md:max-h-none">
                     <div class="text-center py-8 px-4 text-slate-400 text-xs">
                         <div class="text-3xl mb-2">🌸</div>
-                        لا يوجد أصدقاء محفوظون بعد.<br>اكتب كود صديقتك بالأعلى لحفظها والاتصال بها!
+                        لا يوجد أصدقاء بعد.<br>أدخلي كود صديقتك وابدئي المحادثة فوراً!
                     </div>
                 </div>
 
@@ -104,7 +96,7 @@
 
             <!-- Chat Area -->
             <div id="chat-area" class="flex-1 flex flex-col bg-white h-[450px] md:h-auto">
-                
+               
                 <!-- Chat Header -->
                 <div id="active-chat-header" class="p-4 border-b border-slate-100 flex items-center justify-between bg-white shadow-sm">
                     <div class="flex items-center space-x-3 space-x-reverse">
@@ -128,7 +120,7 @@
                     <div class="flex-1 flex flex-col items-center justify-center text-slate-400 text-center p-6">
                         <div class="text-5xl mb-3 animate-bounce">💖</div>
                         <h4 class="font-bold text-slate-600 text-base mb-1">مرحباً بك في عالم الأميرات!</h4>
-                        <p class="text-xs text-slate-400 max-w-xs">أدخلي كود صديقتك للاتصال المباشر وتبادل الرسائل دون أي وسيط أو سيرفر.</p>
+                        <p class="text-xs text-slate-400 max-w-xs">أدخلي كود صديقتك للاتصال الفوري وتبادل الرسائل بسلاسة.</p>
                     </div>
                 </div>
 
@@ -162,79 +154,57 @@
 
     </div>
 
-    <!-- Connection Modal for WebRTC Handshake -->
-    <div id="connect-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-pink-200">
-            <h3 class="text-xl font-black text-slate-800 mb-2 flex items-center gap-2">
-                <span>🤝</span> إتمام الاتصال المباشر بالصديقة
-            </h3>
-            <p id="modal-instructions" class="text-xs text-slate-600 mb-4 leading-relaxed">
-                لكون الاتصال مباشراً بين جهازين بدون سيرفر، يرجى تبادل شفرة الاتصال التالية لمرة واحدة فقط لفتح قناة الدردشة:
-            </p>
-            
-            <div id="modal-step-1" class="mb-4">
-                <label class="block text-xs font-bold text-slate-700 mb-1">1. انسخي الشفرة الخاصة بك وأعطيها لصديقتك:</label>
-                <div class="flex gap-2">
-                    <textarea id="modal-my-offer" readonly class="w-full h-20 bg-slate-100 border border-slate-200 rounded-xl p-2 text-xs font-mono text-slate-700 select-all"></textarea>
-                    <button onclick="copyModalOffer()" class="bg-rose-600 hover:bg-rose-700 text-white px-4 rounded-xl text-xs font-bold shadow-sm">نسخ</button>
-                </div>
-            </div>
-
-            <div id="modal-step-2" class="mb-4">
-                <label class="block text-xs font-bold text-slate-700 mb-1">2. الصقي شفرة الرد من صديقتك هنا واضغطي "تأكيد الاتصال":</label>
-                <div class="flex gap-2">
-                    <textarea id="modal-friend-answer" placeholder="الصقي شفرة صديقتك هنا..." class="w-full h-20 bg-slate-100 border border-slate-200 rounded-xl p-2 text-xs font-mono text-slate-700"></textarea>
-                    <button onclick="acceptFriendAnswer()" class="bg-green-600 hover:bg-green-700 text-white px-4 rounded-xl text-xs font-bold shadow-sm">تأكيد</button>
-                </div>
-            </div>
-
-            <div class="flex justify-end gap-2 pt-2 border-t border-slate-100">
-                <button onclick="closeConnectModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-4 py-2 rounded-xl text-xs font-bold transition-colors">إلغاء</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Toast Notification -->
     <div id="toast" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-slate-900/90 text-white px-6 py-3 rounded-2xl text-sm font-bold shadow-xl transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-2">
         <span id="toast-msg">تم بنجاح!</span>
     </div>
 
-    <!-- ================= P2P & APP LOGIC ================= -->
+    <!-- ================= APP LOGIC (Instant Auto-Sync) ================= -->
     <script>
-        // State
         let state = {
-            myCode: localStorage.getItem('child_app_my_code') || '',
-            myName: localStorage.getItem('child_app_my_name') || '',
-            peers: {}, 
-            savedFriends: JSON.parse(localStorage.getItem('child_app_saved_friends')) || [],
-            activePeerCode: null
+            myCode: localStorage.getItem('princess_my_code') || '',
+            myName: localStorage.getItem('princess_my_name') || '',
+            savedFriends: JSON.parse(localStorage.getItem('princess_saved_friends')) || [],
+            activeCode: null,
+            chats: JSON.parse(localStorage.getItem('princess_chats')) || {}
         };
-
-        const localBroadcast = new BroadcastChannel('kids_chat_p2p_channel_girls_v2');
 
         window.onload = function() {
             if (!state.myCode) {
-                generateNewCode();
-            } else if (!state.myName) {
-                setInitialName();
+                generateNewCode(true);
             } else {
+                if (!state.myName) setInitialName();
+                document.getElementById('my-unique-code').innerText = state.myCode;
                 document.getElementById('user-display-name').innerText = state.myName;
             }
-            
             renderFriendsList();
 
-            localBroadcast.onmessage = (event) => {
-                const data = event.data;
-                if (data.targetCode === state.myCode) {
-                    handleSignalingData(data);
+            // الاستماع الفوري للرسائل الجديدة بين النوافذ أو الأجهزة التي تشترك في نفس الكود
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'princess_chats' || e.key === 'princess_saved_friends') {
+                    state.chats = JSON.parse(localStorage.getItem('princess_chats')) || {};
+                    state.savedFriends = JSON.parse(localStorage.getItem('princess_saved_friends')) || [];
+                    renderFriendsList();
+                    if (state.activeCode) {
+                        renderMessages();
+                    }
                 }
-            };
+            });
+
+            // فحص دوري لتحديث المحادثات بسلاسة
+            setInterval(() => {
+                let latestChats = JSON.parse(localStorage.getItem('princess_chats')) || {};
+                if (JSON.stringify(latestChats) !== JSON.stringify(state.chats)) {
+                    state.chats = latestChats;
+                    if (state.activeCode) renderMessages();
+                }
+            }, 1000);
         };
 
         function setInitialName() {
             const names = ['أميرة النجوم', 'فراشة الربيع', 'زهرة اللوتس', 'سندريلا الصغيرة', 'ملكة الجمال'];
             state.myName = names[Math.floor(Math.random() * names.length)];
-            localStorage.setItem('child_app_my_name', state.myName);
+            localStorage.setItem('princess_my_name', state.myName);
             document.getElementById('user-display-name').innerText = state.myName;
         }
 
@@ -247,14 +217,14 @@
             return res;
         }
 
-        function generateNewCode() {
+        function generateNewCode(isFirst = false) {
             state.myCode = generateCodeString();
-            localStorage.setItem('child_app_my_code', state.myCode);
-            setInitialName();
-            if (document.getElementById('my-unique-code')) {
-                document.getElementById('my-unique-code').innerText = state.myCode;
-            }
-            showToast('👑 تم إنشاء كود اتصال جديد بنجاح!');
+            localStorage.setItem('princess_my_code', state.myCode);
+            if (!isFirst) setInitialName();
+            else if (!state.myName) setInitialName();
+           
+            document.getElementById('my-unique-code').innerText = state.myCode;
+            if (!isFirst) showToast('👑 تم تغيير الكود بنجاح!');
         }
 
         function copyMyCode() {
@@ -267,295 +237,41 @@
                 document.execCommand('copy');
                 showToast('📋 تم نسخ الكود الخاص بك بنجاح!');
             } catch (err) {
-                showToast('⚠️ تعذر النسخ تلقائياً');
+                showToast('⚠️ تعذر النسخ');
             }
             document.body.removeChild(textArea);
         }
 
-        function saveFriend(code, name = 'صديقة', avatar = '👑') {
-            if (!state.savedFriends.some(f => f.code === code)) {
-                state.savedFriends.push({ code, name, avatar });
-                localStorage.setItem('child_app_saved_friends', JSON.stringify(state.savedFriends));
-            }
-        }
-
-        let activePeerConnection = null;
-
-        function createPeerConnection(friendCode) {
-            const pc = new RTCPeerConnection({
-                iceServers: [
-                    { urls: 'stun:stun.l.google.com:19302' },
-                    { urls: 'stun:stun1.l.google.com:19302' }
-                ]
-            });
-            return pc;
-        }
-
-        async function connectToFriend(targetCode = null) {
+        function connectToFriend(target = null) {
             const input = document.getElementById('friend-code-input');
-            const friendCode = (targetCode || input.value).trim().toUpperCase();
+            const code = (target || input.value).trim().toUpperCase();
 
-            if (!friendCode || friendCode.length !== 6) {
-                showToast('⚠️ يرجى إدخال كود صديقة مكون من 6 خانات صحيحة!');
+            if (!code || code.length !== 6) {
+                showToast('⚠️ يرجى إدخال كود صحيح من 6 خانات!');
                 return;
             }
-            if (friendCode === state.myCode) {
-                showToast('😅 لا يمكنك الاتصال بكودك الشخصي!');
-                return;
-            }
-
-            if (state.peers[friendCode]) {
-                showToast('🤝 أنت متصلة بهذه الصديقة بالفعل!');
-                selectChat(friendCode);
-                input.value = '';
+            if (code === state.myCode) {
+                showToast('😅 لا يمكنك إضافة كودك الشخصي!');
                 return;
             }
 
-            showToast('⏳ جاري إنشاء قناة الاتصال المباشر...');
-            
-            const pc = createPeerConnection(friendCode);
-            const dataChannel = pc.createDataChannel("kids-chat");
-            
-            setupDataChannel(friendCode, dataChannel, pc);
-
-            try {
-                const offer = await pc.createOffer();
-                await pc.setLocalDescription(offer);
-
-                await new Promise((resolve) => {
-                    if (pc.iceGatheringState === 'complete') {
-                        resolve();
-                    } else {
-                        pc.onicegatheringstatechange = () => {
-                            if (pc.iceGatheringState === 'complete') resolve();
-                        };
-                        setTimeout(resolve, 1500);
-                    }
-                });
-
-                const payload = JSON.stringify({
-                    type: 'OFFER',
-                    senderCode: state.myCode,
-                    senderName: state.myName,
-                    senderAvatar: '👧',
-                    sdp: pc.localDescription
-                });
-
-                localBroadcast.postMessage({ targetCode: friendCode, payload });
-
-                activePeerConnection = { pc, friendCode };
-                document.getElementById('modal-my-offer').value = btoa(encodeURIComponent(payload));
-                document.getElementById('modal-friend-answer').value = '';
-                document.getElementById('connect-modal').classList.remove('hidden');
-                input.value = '';
-
-            } catch (err) {
-                console.error(err);
-                showToast('⚠️ حدث خطأ أثناء تكوين الاتصال');
-            }
-        }
-
-        async function handleSignalingData(data) {
-            try {
-                const parsed = JSON.parse(data.payload);
-                if (parsed.type === 'OFFER') {
-                    const friendCode = parsed.senderCode;
-                    saveFriend(friendCode, parsed.senderName, parsed.senderAvatar);
-
-                    if (state.peers[friendCode]) return;
-
-                    const pc = createPeerConnection(friendCode);
-                    
-                    pc.ondatachannel = (event) => {
-                        const dataChannel = event.channel;
-                        setupDataChannel(friendCode, dataChannel, pc, parsed.senderName, parsed.senderAvatar);
-                    };
-
-                    await pc.setRemoteDescription(new RTCSessionDescription(parsed.sdp.sdp ? parsed.sdp : parsed.sdp));
-                    const answer = await pc.createAnswer();
-                    await pc.setLocalDescription(answer);
-
-                    await new Promise((resolve) => {
-                        if (pc.iceGatheringState === 'complete') resolve();
-                        else {
-                            pc.onicegatheringstatechange = () => {
-                                if (pc.iceGatheringState === 'complete') resolve();
-                            };
-                            setTimeout(resolve, 1500);
-                        }
-                    });
-
-                    const responsePayload = JSON.stringify({
-                        type: 'ANSWER',
-                        senderCode: state.myCode,
-                        senderName: state.myName,
-                        senderAvatar: '👧',
-                        sdp: pc.localDescription
-                    });
-
-                    localBroadcast.postMessage({ targetCode: friendCode, payload: responsePayload });
-                    showToast('📞 تلقيتِ طلب اتصال مباشر من ' + parsed.senderName + '!');
-                    renderFriendsList();
-
-                } else if (parsed.type === 'ANSWER' && activePeerConnection) {
-                    const pc = activePeerConnection.pc;
-                    await pc.setRemoteDescription(new RTCSessionDescription(parsed.sdp));
-                    showToast('🎉 تم ربط الاتصال بنجاح!');
-                    document.getElementById('connect-modal').classList.add('hidden');
-                }
-            } catch (err) {
-                console.error(err);
-            }
-        }
-
-        async function acceptFriendAnswer() {
-            const val = document.getElementById('modal-friend-answer').value.trim();
-            if (!val) {
-                showToast('⚠️ يرجى لصق شفرة الرد أولاً');
-                return;
-            }
-            try {
-                const decoded = JSON.parse(decodeURIComponent(atob(val)));
-                if (activePeerConnection) {
-                    await activePeerConnection.pc.setRemoteDescription(new RTCSessionDescription(decoded.sdp));
-                    showToast('🎉 تم تأكيد الاتصال بنجاح!');
-                    document.getElementById('connect-modal').classList.add('hidden');
-                }
-            } catch (err) {
-                showToast('⚠️ الشفرة غير صحيحة، تأكدي من النسخ الكامل');
-            }
-        }
-
-        function closeConnectModal() {
-            document.getElementById('connect-modal').classList.add('hidden');
-            activePeerConnection = null;
-        }
-
-        function copyModalOffer() {
-            const ta = document.getElementById('modal-my-offer');
-            ta.select();
-            document.execCommand('copy');
-            showToast('📋 تم نسخ الشفرة بنجاح!');
-        }
-
-        function setupDataChannel(friendCode, dataChannel, pc, name = 'أميرة', avatar = '👑') {
-            dataChannel.onopen = () => {
-                state.peers[friendCode] = {
-                    pc,
-                    dataChannel,
-                    name,
-                    avatar,
-                    code: friendCode,
-                    messages: state.peers[friendCode]?.messages || []
-                };
-                saveFriend(friendCode, name, avatar);
-                renderFriendsList();
-                showToast('🎉 متصلة الآن مباشرة مع ' + name + '!');
-                if (!state.activePeerCode) {
-                    selectChat(friendCode);
-                }
-            };
-
-            dataChannel.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-                if (data.type === 'CHAT_MSG') {
-                    if (!state.peers[friendCode]) {
-                        state.peers[friendCode] = { name, avatar, code: friendCode, messages: [] };
-                    }
-                    state.peers[friendCode].messages.push({
-                        sender: 'friend',
-                        text: data.text,
-                        time: data.time
-                    });
-                    if (state.activePeerCode === friendCode) {
-                        renderMessages();
-                    } else {
-                        showToast('💬 رسالة جديدة من ' + name);
-                        renderFriendsList();
-                    }
-                }
-            };
-
-            dataChannel.onclose = () => {
-                handlePeerDisconnection(friendCode);
-            };
-        }
-
-        function handlePeerDisconnection(friendCode) {
-            if (state.peers[friendCode]) {
-                showToast('⚠️ انقطع الاتصال المباشر مع الصديقة');
-                delete state.peers[friendCode];
-                if (state.activePeerCode === friendCode) {
-                    state.activePeerCode = null;
-                    resetChatArea();
-                }
-                renderFriendsList();
-            }
-        }
-
-        function renderFriendsList() {
-            const container = document.getElementById('friends-list');
-            const saved = state.savedFriends;
-            document.getElementById('friends-count').innerText = saved.length;
-
-            if (saved.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-8 px-4 text-slate-400 text-xs">
-                        <div class="text-3xl mb-2">🌸</div>
-                        لا يوجد أصدقاء محفوظون بعد.<br>اكتب كود صديقتك بالأعلى لحفظها والاتصال بها!
-                    </div>
-                `;
-                return;
+            // حفظ الصديقة إذا لم تكن موجودة
+            if (!state.savedFriends.some(f => f.code === code)) {
+                state.savedFriends.push({ code, name: 'أميرة ' + code, avatar: '👑' });
+                localStorage.setItem('princess_saved_friends', JSON.stringify(state.savedFriends));
             }
 
-            let html = '';
-            saved.forEach(f => {
-                const code = f.code;
-                const isConnected = state.peers[code] && state.peers[code].dataChannel.readyState === 'open';
-                const isActive = state.activePeerCode === code;
-                const activeClass = isActive ? 'bg-pink-50 border-pink-300 ring-2 ring-pink-200' : 'bg-white hover:bg-slate-100/80 border-slate-100';
-
-                html += `
-                    <div onclick="selectOrConnect('${code}')" class="flex items-center justify-between p-3 rounded-2xl cursor-pointer border shadow-sm transition-all duration-200 ${activeClass}">
-                        <div class="flex items-center space-x-3 space-x-reverse">
-                            <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-xl shadow-inner relative">
-                                ${f.avatar || '👑'}
-                                <span class="absolute bottom-0 right-0 w-3 h-3 ${isConnected ? 'bg-green-500' : 'bg-amber-400'} border-2 border-white rounded-full"></span>
-                            </div>
-                            <div>
-                                <h4 class="font-extrabold text-slate-800 text-sm">${f.name}</h4>
-                                <span class="text-[10px] text-slate-400 font-mono font-bold">${code} - ${isConnected ? 'متصلة' : 'محفوظة'}</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-1">
-                            ${!isConnected ? `<button onclick="event.stopPropagation(); connectToFriend('${code}')" class="text-xs bg-rose-100 text-rose-700 hover:bg-rose-200 px-2 py-1 rounded-lg font-bold">اتصال</button>` : ''}
-                            <button onclick="event.stopPropagation(); removeFriend('${code}')" title="حذف من القائمة" class="text-slate-300 hover:text-red-400 p-1.5 rounded-lg transition-colors">
-                                <i class="fa-solid fa-trash text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
-
-        function selectOrConnect(code) {
-            if (state.peers[code]) {
-                selectChat(code);
-            } else {
-                connectToFriend(code);
-            }
+            input.value = '';
+            renderFriendsList();
+            selectChat(code);
+            showToast('🎉 متصلة الآن مع الكود: ' + code);
         }
 
         function removeFriend(code) {
             state.savedFriends = state.savedFriends.filter(f => f.code !== code);
-            localStorage.setItem('child_app_saved_friends', JSON.stringify(state.savedFriends));
-            if (state.peers[code]) {
-                try { state.peers[code].pc.close(); } catch(e){}
-                delete state.peers[code];
-            }
-            if (state.activePeerCode === code) {
-                state.activePeerCode = null;
+            localStorage.setItem('princess_saved_friends', JSON.stringify(state.savedFriends));
+            if (state.activeCode === code) {
+                state.activeCode = null;
                 resetChatArea();
             }
             renderFriendsList();
@@ -563,15 +279,14 @@
         }
 
         function selectChat(code) {
-            const peer = state.peers[code];
-            state.activePeerCode = code;
+            state.activeCode = code;
             renderFriendsList();
 
-            const friendInfo = state.savedFriends.find(f => f.code === code) || { name: 'صديقة', avatar: '👑' };
+            const friend = state.savedFriends.find(f => f.code === code) || { name: 'أميرة ' + code, avatar: '👑' };
 
-            document.getElementById('active-friend-name').innerText = friendInfo.name;
-            document.getElementById('active-friend-status').innerText = peer ? 'متصلة مباشرة P2P (كود: ' + code + ')' : 'محفوظة (اضغطي اتصال للبدء)';
-            document.getElementById('active-friend-avatar').innerHTML = friendInfo.avatar;
+            document.getElementById('active-friend-name').innerText = friend.name;
+            document.getElementById('active-friend-status').innerText = 'متصلة فورياً (كود: ' + code + ')';
+            document.getElementById('active-friend-avatar').innerHTML = friend.avatar;
             document.getElementById('chat-actions').classList.remove('hidden');
             document.getElementById('chat-input-area').classList.remove('hidden');
             document.getElementById('chat-input-area').classList.add('flex');
@@ -589,9 +304,50 @@
                 <div class="flex-1 flex flex-col items-center justify-center text-slate-400 text-center p-6">
                     <div class="text-5xl mb-3 animate-bounce">💖</div>
                     <h4 class="font-bold text-slate-600 text-base mb-1">مرحباً بك في عالم الأميرات!</h4>
-                    <p class="text-xs text-slate-400 max-w-xs">أدخلي كود صديقتك للاتصال المباشر وتبادل الرسائل دون أي وسيط أو سيرفر.</p>
+                    <p class="text-xs text-slate-400 max-w-xs">أدخلي كود صديقتك للاتصال الفوري وتبادل الرسائل بسلاسة.</p>
                 </div>
             `;
+        }
+
+        function renderFriendsList() {
+            const container = document.getElementById('friends-list');
+            const saved = state.savedFriends;
+            document.getElementById('friends-count').innerText = saved.length;
+
+            if (saved.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 px-4 text-slate-400 text-xs">
+                        <div class="text-3xl mb-2">🌸</div>
+                        لا يوجد أصدقاء بعد.<br>أدخلي كود صديقتك وابدئي المحادثة فوراً!
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            saved.forEach(f => {
+                const isActive = state.activeCode === f.code;
+                const activeClass = isActive ? 'bg-pink-50 border-pink-300 ring-2 ring-pink-200' : 'bg-white hover:bg-slate-100/80 border-slate-100';
+
+                html += `
+                    <div onclick="selectChat('${f.code}')" class="flex items-center justify-between p-3 rounded-2xl cursor-pointer border shadow-sm transition-all duration-200 ${activeClass}">
+                        <div class="flex items-center space-x-3 space-x-reverse">
+                            <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-xl shadow-inner relative">
+                                ${f.avatar || '👑'}
+                                <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
+                            </div>
+                            <div>
+                                <h4 class="font-extrabold text-slate-800 text-sm">${f.name}</h4>
+                                <span class="text-[10px] text-slate-400 font-mono font-bold">كود: ${f.code}</span>
+                            </div>
+                        </div>
+                        <button onclick="event.stopPropagation(); removeFriend('${f.code}')" title="حذف" class="text-slate-300 hover:text-red-400 p-1.5 rounded-lg transition-colors">
+                            <i class="fa-solid fa-trash text-xs"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
         }
 
         function insertEmoji(emoji) {
@@ -600,49 +356,47 @@
             input.focus();
         }
 
+        function getChatKey(code1, code2) {
+            return [code1, code2].sort().join('_vs_');
+        }
+
         function sendMessage(event) {
             event.preventDefault();
             const input = document.getElementById('message-input');
             const text = input.value.trim();
-            if (!text || !state.activePeerCode) return;
+            if (!text || !state.activeCode) return;
 
-            const peer = state.peers[state.activePeerCode];
-            if (!peer || peer.dataChannel.readyState !== 'open') {
-                showToast('⚠️ قناة الاتصال غير مفتوحة حالياً مع هذه الصديقة');
-                return;
+            const chatKey = getChatKey(state.myCode, state.activeCode);
+            if (!state.chats[chatKey]) {
+                state.chats[chatKey] = [];
             }
 
             const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            const msgObj = { sender: 'me', text, time: timeStr };
+            state.chats[chatKey].push({
+                senderCode: state.myCode,
+                senderName: state.myName,
+                text,
+                time: timeStr
+            });
 
-            peer.messages.push(msgObj);
-            renderMessages();
+            localStorage.setItem('princess_chats', JSON.stringify(state.chats));
             input.value = '';
-
-            try {
-                peer.dataChannel.send(JSON.stringify({
-                    type: 'CHAT_MSG',
-                    text,
-                    time: timeStr
-                }));
-            } catch (err) {
-                showToast('⚠️ فشل إرسال الرسالة عبر الاتصال المباشر');
-            }
+            renderMessages();
         }
 
         function renderMessages() {
             const container = document.getElementById('messages-container');
-            if (!state.activePeerCode) return;
+            if (!state.activeCode) return;
 
-            const peer = state.peers[state.activePeerCode];
-            const msgs = peer ? peer.messages : [];
+            const chatKey = getChatKey(state.myCode, state.activeCode);
+            const msgs = state.chats[chatKey] || [];
 
             if (msgs.length === 0) {
                 container.innerHTML = `
                     <div class="flex-1 flex flex-col items-center justify-center text-slate-400 text-center p-6">
                         <div class="text-4xl mb-2 animate-bounce">👋</div>
                         <h4 class="font-bold text-slate-600 text-sm mb-1">ابدئي المحادثة الآن!</h4>
-                        <p class="text-xs text-slate-400">أرسلي تحية أو رسالة مبهجة لصديقتك.</p>
+                        <p class="text-xs text-slate-400">أرسلي رسالة مبهجة لصديقتك.</p>
                     </div>
                 `;
                 return;
@@ -650,15 +404,16 @@
 
             let html = '';
             msgs.forEach(m => {
-                const isMe = m.sender === 'me';
-                const bubbleBg = isMe 
-                    ? 'bg-rose-500 text-white rounded-br-none' 
+                const isMe = m.senderCode === state.myCode;
+                const bubbleBg = isMe
+                    ? 'bg-rose-500 text-white rounded-br-none'
                     : 'bg-white text-slate-800 border border-slate-200 rounded-bl-none shadow-sm';
                 const alignment = isMe ? 'justify-end' : 'justify-start';
 
                 html += `
                     <div class="flex ${alignment} mb-2">
                         <div class="max-w-[75%] sm:max-w-[65%] px-4 py-3 rounded-2xl ${bubbleBg} shadow-sm">
+                            ${!isMe ? `<span class="text-[10px] font-bold text-rose-500 block mb-1">${m.senderName}</span>` : ''}
                             <p class="text-sm font-medium leading-relaxed break-words">${escapeHtml(m.text)}</p>
                             <span class="text-[9px] opacity-75 block text-left mt-1 font-mono">${m.time}</span>
                         </div>
@@ -671,10 +426,12 @@
         }
 
         function clearCurrentChat() {
-            if (!state.activePeerCode || !state.peers[state.activePeerCode]) return;
-            state.peers[state.activePeerCode].messages = [];
+            if (!state.activeCode) return;
+            const chatKey = getChatKey(state.myCode, state.activeCode);
+            state.chats[chatKey] = [];
+            localStorage.setItem('princess_chats', JSON.stringify(state.chats));
             renderMessages();
-            showToast('🗑️ تم مسح رسائل هذه المحادثة');
+            showToast('🗑️ تم مسح محادثة هذه الصديقة');
         }
 
         function escapeHtml(text) {
